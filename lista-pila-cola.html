@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+    <title>Lista-Pila-Cola TP</title>
+</head>
+
+<body>
+    <div id="nav">
+        <div class="container my-5 text-center">
+            <h2>Trabajo Practico: Lista - Pila - Cola</h2>
+            <div class="input-group mb-3">
+
+                <input type="text" class="form-control" onclick="clearInput()" placeholder="Agregue un nuevo elemento"
+                    aria-label="Recipient's username" aria-describedby="button-addon2" id="element">
+                <div class="input-group-append" id="container">
+                    <button class="btn btn-outline-secondary" type="button" id="btn-AddElement">Agregar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="contenedora">
+        <div class="mt-5" id="divListaAsc">
+            <h4>Estructura Lista Ascendente</h4>
+            <ul id="listaAsc">
+            </ul>
+        </div>
+        <div class="mt-5" id="divListaDesc">
+            <h4>Estructura Lista Descendente</h4>
+            <ul id="listaDesc">
+            </ul>
+        </div>
+        <div class="mt-5" id="divCola">
+            <h4>Estructura cola</h4>
+            <ul id="cola">
+            </ul>
+        </div>
+        <div class="mt-5" id="divPila">
+            <h4>Estructura Pila</h4>
+            <ul id="Pila">
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Declaracion de variables globales
+        var divListAsc = document.querySelector('#divListaAsc')
+        var divListDesc = document.querySelector('#divListaDesc')
+        var divCola = document.querySelector('#divCola')
+        var divPila = document.querySelector('#divPila')
+        var btnAddElement = document.getElementById('btn-AddElement')
+        var ElementList = [];
+        var ElementListDesc = [];
+
+        //Funciones
+        //Lista Ascedente
+        addElementListAsc = function () {
+            divListAsc.innerHTML = `<h4>Estructura Lista Ascendente</h4>`
+            var element = document.getElementById('element').value
+            ElementList.push(element);
+            ElementList.sort();
+            for (var i = 0; i <ElementList.length ; i++) {
+            var element = document.getElementById('element').value
+            const li = document.createElement('li')
+            li.appendChild(document.createTextNode(ElementList))
+            li.innerHTML = `${ElementList[i]}`
+            divListAsc.appendChild(li)
+            }
+        }
+        //Lista Descendente
+        addElementListDesc = function () {
+            divListaDesc.innerHTML = `<h4>Estructura Lista Descendente</h4>`
+            var element = document.getElementById('element').value
+            ElementListDesc.push(element);
+            ElementListDesc.sort();
+            ElementListDesc.reverse();
+            for (var i = 0; i <ElementListDesc.length ; i++) {
+            var element = document.getElementById('element').value
+            const li = document.createElement('li')
+            li.appendChild(document.createTextNode(ElementListDesc))
+            li.innerHTML = `${ElementListDesc[i]}`
+            divListaDesc.appendChild(li)
+            }
+        }
+        //Pila
+        addElementPila = function () {
+            var element = document.getElementById('element').value
+            const li = document.createElement('li')
+            li.innerHTML = `${element}`;
+            var ref = divPila.getElementsByTagName('li')[0];
+            divPila.insertBefore(li, ref);
+            return false;
+        }
+
+        //Cola
+        addElementCola = function () {
+            var element = document.getElementById('element').value
+            const li = document.createElement('li')
+            li.appendChild(document.createTextNode(element))
+            li.innerHTML = `${element}`
+            divCola.appendChild(li)
+
+        }
+
+        //Funcion limpiar input
+        clearInput = function () {
+            document.getElementById('element').value = "";
+        }
+
+        // Eventos
+        btnAddElement.addEventListener('click', addElementPila);
+        btnAddElement.addEventListener('click', addElementCola);
+        btnAddElement.addEventListener('click', addElementListAsc);
+        btnAddElement.addEventListener('click', addElementListDesc);
+
+    </script>
+</body>
+
+</html>
